@@ -1,22 +1,12 @@
 # DWAgent Installation Script
-# This script downloads and executes the DWAgent configuration tool
-
-# Display instructions and purpose
 Write-Host '======================================================' -ForegroundColor Cyan
 Write-Host 'DWAgent Tools Installation Script' -ForegroundColor Cyan
 Write-Host '======================================================' -ForegroundColor Cyan
 Write-Host ''
-Write-Host 'This script will:' -ForegroundColor Yellow
-Write-Host '1. Download the DWAgent-Tools.bat file from GitHub' -ForegroundColor Yellow
-Write-Host '2. Execute the script with administrator privileges' -ForegroundColor Yellow
-Write-Host '3. The script will configure DWAgent settings' -ForegroundColor Yellow
-Write-Host '4. Automatically clean up after completion' -ForegroundColor Yellow
-Write-Host ''
-Write-Host 'Starting installation process...' -ForegroundColor Green
 
 try {
     Write-Host 'Downloading DWAgent-Tools.bat...' -ForegroundColor Green
-    $tempFile = '$env:temp\DWAgent-Tools.bat'
+    $tempFile = "$env:temp\DWAgent-Tools.bat"
     $batUrl = 'https://raw.githubusercontent.com/sam-tam-sam/DWAgent-Tools/main/DWAgent-Tools.bat'
     
     # Try to download the file with multiple attempts
@@ -68,7 +58,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red
     
     Write-Host 'Attempting to clean up temporary files...' -ForegroundColor Yellow
-    Remove-Item '$env:temp\DWAgent-Tools.bat' -ErrorAction SilentlyContinue
+    Remove-Item "$env:temp\DWAgent-Tools.bat" -ErrorAction SilentlyContinue
 }
 
 Write-Host 'Press Enter to exit...' -ForegroundColor Cyan

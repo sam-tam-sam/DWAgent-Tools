@@ -17,7 +17,8 @@ if exist "%path%" (
 )
 
 :: Download the file
-powershell -Command "$ProgressPreference='SilentlyContinue'; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri '%url%' -OutFile '%path%'"
+echo [INFO] Attempting to download the file...
+powershell -Command "$ProgressPreference='SilentlyContinue'; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; try { Invoke-WebRequest -Uri '%url%' -OutFile '%path%' -ErrorAction Stop; Write-Host 'Download completed successfully.' } catch { Write-Host 'Download failed:'; Write-Host $_.Exception.Message; exit 1 }"
 
 :: Check if the file was downloaded successfully
 if exist "%path%" (
